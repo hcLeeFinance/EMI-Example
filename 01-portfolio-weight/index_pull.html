@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -811,10 +811,12 @@
           <div style="margin-top: 1.5rem;">
             <p><strong>What are the optimal weights ($w_A, w_B$)?</strong></p>
             <ul>
-              <li>Should we invest 100% in Asset A for the highest return?</li>
-              <li>Should we use a simple 50/50 split (Equal Weight)?</li>
-              <li>How much return do we earn per one unit of risk?</li>
-              <li>Is there a mathematical approach to optimize our weights?</li>
+              <li>Should we invest 100% in Asset A to maximize returns?</li>
+              <li>Should we invest 100% in Asset B to minimize volatility?</li>
+              <li>Should we use an equal-weight (50/50) portfolio?</li>
+              <li>Should we consider return per unit of risk?</li>
+              <li>How much return do we earn for each unit of risk?</li>
+              <li>Is there a mathematical way to determine the optimal portfolio weights?</li>
             </ul>
           </div>
         </div>
@@ -1218,8 +1220,11 @@
         <option value="en">EN Script</option>
         <option value="zh">中文字幕</option>
       </select>
-      <label style="display:flex;align-items:center;gap:0.35rem;font-size:0.82rem;font-weight:600;color:var(--text-muted);cursor:pointer;user-select:none;">
-        <input type="checkbox" id="chkAutoSpeak" style="cursor:pointer;">Auto
+      <label style="display:flex;align-items:center;gap:0.35rem;font-size:0.82rem;font-weight:600;color:var(--text-muted);cursor:pointer;user-select:none;" title="自動朗讀投影片內容">
+        <input type="checkbox" id="chkAutoSpeak" style="cursor:pointer;">Auto-Speak
+      </label>
+      <label style="display:flex;align-items:center;gap:0.35rem;font-size:0.82rem;font-weight:600;color:var(--text-muted);cursor:pointer;user-select:none;" title="朗讀完畢後自動切換至下一頁 (適合螢幕錄影)">
+        <input type="checkbox" id="chkAutoPlay" style="cursor:pointer;">Video Mode (Auto-Play)
       </label>
     </div>
 
@@ -1244,8 +1249,8 @@
         tip: `• Start with a warm welcome to the students.<br>• Introduce the lecture topic and state its importance in quantitative asset management.`
       },
       2: {
-        script: `Let's start with a practical allocation problem. Asset A has a 12% expected return and Asset B has a 6% expected return. But return alone is not enough. We also compare return per unit of risk. Asset A has a return-to-risk ratio of 0.60, while Asset B has 0.75. This shows that the high-return asset is not automatically better.<br><br>The question becomes: can we combine these two assets to improve the trade-off?`,
-        tip: `• Point to the Return / Risk line before discussing the weights.<br>• Emphasize that a higher return is meaningful only after considering risk.`
+        script: `Let's start with a practical allocation problem. Asset A has a 12% expected return and Asset B has a 6% expected return. But choosing the right allocation is not simple.<br><br>Should we invest 100% in Asset A to maximize returns? Or 100% in Asset B to minimize volatility? Should we use an equal-weight 50/50 portfolio? We should also consider return per unit of risk — how much return do we earn for each unit of risk we take? And ultimately, is there a mathematical way to determine the optimal portfolio weights?<br><br>These are the key questions this lecture will answer step by step.`,
+        tip: `• Point to each bullet question one by one as you read them aloud.<br>• Emphasize that maximizing return and minimizing risk are two different objectives — we need a framework to balance them.`
       },
       3: {
         script: `First, let's establish <strong>Step 1: Define Asset Return and Risk</strong>. In finance, return never comes alone; we must consider risk. We measure risk using a mathematical concept called <strong>Standard Deviation</strong>, or <strong>Volatility</strong>.<br><br>Here, Asset A gives us a 12% return, but carries a 20% volatility. Asset B gives 6% return with a very low 8% volatility. It is highly stable. How do we combine them?`,
@@ -1296,8 +1301,8 @@
         tip: `• 以熱情的問候歡迎學生。<br>• 介紹課程主題，並說明其在量化資產管理中的重要性。`
       },
       2: {
-        script: `讓我們從一個實際的配置問題開始。資產A的預期報酬為12%，資產B為6%。但僅靠報酬率是不夠的，我們還要比較每單位風險的報酬。資產A的報酬風險比為0.60，而資產B為0.75。這說明高報酬的資產不一定是更好的選擇。問題在於：我們能否結合這兩種資產，來改善風險與報酬的權衡？`,
-        tip: `• 在討論權重之前，先指出「報酬/風險」欄位。<br>• 強調較高的報酬只有在考慮風險後才有意義。`
+        script: `讓我們從一個實際的配置問題開始。資產A的預期報酬為12%，資產B為6%。但選擇正確的配置並不簡單。<br><br>我們應該100%投資資產A以最大化報酬嗎？還是100%投資資產B以最小化波動率？我們應該採用等權重（50/50）投資組合嗎？我們還需要考量每單位風險的報酬——每承擔一單位風險，能獲得多少報酬？最終，是否有數學方法能決定最適投資組合的權重？<br><br>這些正是本課程將逐步解答的關鍵問題。`,
+        tip: `• 逐一指出每個問題項目，邊唸邊搭配投影片的條列內容。<br>• 強調「最大化報酬」和「最小化風險」是兩個不同的目標——我們需要一個框架來平衡兩者。`
       },
       3: {
         script: `首先，讓我們確立第一步：定義資產報酬與風險。在金融學中，報酬從不單獨出現，我們必須考慮風險。我們使用標準差（也稱為波動率）來衡量風險。資產A提供12%的報酬，但波動率高達20%，代表價格波動劇烈。資產B提供6%的報酬，波動率僅8%，非常穩定。我們如何將兩者結合？`,
@@ -1543,7 +1548,17 @@
           utterance.lang = speakLang === 'zh' ? 'zh-TW' : 'en-US';
         }
         utterance.rate = 0.9;
-        utterance.onend = function() { updateSpeakButtonState(false); };
+        utterance.onend = function() { 
+          updateSpeakButtonState(false); 
+          const chkAutoPlay = document.getElementById('chkAutoPlay');
+          if (chkAutoPlay && chkAutoPlay.checked) {
+            setTimeout(function() {
+              if (currentSlide < totalSlides && !isSpeaking) {
+                navigateSlide(1);
+              }
+            }, 1500); // 1.5s delay before moving to the next slide
+          }
+        };
         utterance.onerror = function() { updateSpeakButtonState(false); };
         updateSpeakButtonState(true);
         synth.speak(utterance);
@@ -1634,7 +1649,8 @@
       document.getElementById('progressBar').style.width = percent + '%';
       updateSubtitle();
       const chkAutoSpeak = document.getElementById('chkAutoSpeak');
-      if (chkAutoSpeak && chkAutoSpeak.checked) {
+      const chkAutoPlay = document.getElementById('chkAutoPlay');
+      if ((chkAutoSpeak && chkAutoSpeak.checked) || (chkAutoPlay && chkAutoPlay.checked)) {
         startSpeechForCurrentSlide();
       } else {
         stopSpeech();
